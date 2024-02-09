@@ -235,7 +235,7 @@ export default function App() {
           }}>
           <Stack.Screen
             name="HomeScreen"
-            options={{headerTitle: 'Live Markdown Example'}}
+            options={{headerTitle: 'Marknotes'}}
             component={HomeScreen}
           />
           <Stack.Screen
