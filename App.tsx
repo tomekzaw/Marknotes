@@ -120,7 +120,7 @@ function SmallNote({note, onPress}: SmallNoteProps) {
         autoCapitalize="none"
         value={note.text}
         editable={false}
-        style={[styles.smallNote, {backgroundColor: note.color}]}
+        style={[styles.note, styles.smallNote, {backgroundColor: note.color}]}
         markdownStyle={MARKDOWN_STYLE}
         pointerEvents="none"
         sharedTransitionTag={note.tag}
@@ -213,7 +213,11 @@ function NoteScreen({
                 autoCapitalize="none"
                 value={text}
                 onChangeText={setText}
-                style={[styles.bigNote, {backgroundColor: note.color}]}
+                style={[
+                  styles.note,
+                  styles.bigNote,
+                  {backgroundColor: note.color},
+                ]}
                 markdownStyle={MARKDOWN_STYLE}
                 sharedTransitionTag={note.tag}
               />
@@ -275,26 +279,21 @@ const styles = StyleSheet.create({
     position: 'absolute',
     backgroundColor: 'rgba(0,0,0,0.7)',
   },
-  smallNote: {
+  note: {
     color: 'black',
     verticalAlign: 'top',
     fontSize: 16,
-    margin: NOTES_GAP / 2,
-    padding: 10,
     borderRadius: 10,
-    backgroundColor: 'gold',
+    padding: 10,
     overflow: 'hidden',
+  },
+  smallNote: {
+    margin: NOTES_GAP / 2,
     maxHeight: 200,
   },
   bigNote: {
-    color: 'black',
-    verticalAlign: 'top',
-    fontSize: 16,
     width: 300,
     minHeight: 300,
     maxHeight: 300,
-    padding: 10,
-    borderRadius: 10,
-    backgroundColor: 'gold',
   },
 });
