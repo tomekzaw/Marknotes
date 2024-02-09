@@ -1,0 +1,24 @@
+diff --git a/node_modules/@expensify/react-native-live-markdown/ios/MarkdownTextInputDecoratorView.mm b/node_modules/@expensify/react-native-live-markdown/ios/MarkdownTextInputDecoratorView.mm
+index f94f5a9..ef87ba6 100644
+--- a/node_modules/@expensify/react-native-live-markdown/ios/MarkdownTextInputDecoratorView.mm
++++ b/node_modules/@expensify/react-native-live-markdown/ios/MarkdownTextInputDecoratorView.mm
+@@ -53,7 +53,9 @@ - (void)didMoveToWindow {
+   _textInput = (RCTTextInputComponentView *)view;
+   UIView<RCTBackedTextInputViewProtocol> *backedTextInputView = [_textInput valueForKey:@"_backedTextInputView"];
+ #else
+-  react_native_assert([view isKindOfClass:[RCTBaseTextInputView class]] && "Previous sibling component is not an instance of RCTBaseTextInputView.");
++  if (![view isKindOfClass:[RCTBaseTextInputView class]]) {
++    return;
++  }
+   _textInput = (RCTBaseTextInputView *)view;
+   UIView<RCTBackedTextInputViewProtocol> *backedTextInputView = _textInput.backedTextInputView;
+ #endif /* RCT_NEW_ARCH_ENABLED */
+@@ -63,6 +65,8 @@ - (void)didMoveToWindow {
+   [_markdownUtils setMarkdownStyle:_markdownStyle];
+ 
+   [_textInput setMarkdownUtils:_markdownUtils];
++  _textInput.attributedText = _textInput.attributedText;
++
+   if ([backedTextInputView isKindOfClass:[RCTUITextField class]]) {
+     RCTUITextField *textField = (RCTUITextField *)backedTextInputView;
+     _adapter = [textField valueForKey:@"textInputDelegateAdapter"];

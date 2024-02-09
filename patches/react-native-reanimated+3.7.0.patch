@@ -1,0 +1,21 @@
+diff --git a/node_modules/react-native-reanimated/apple/LayoutReanimation/REASharedTransitionManager.m b/node_modules/react-native-reanimated/apple/LayoutReanimation/REASharedTransitionManager.m
+index 3fc52c9..0970e89 100644
+--- a/node_modules/react-native-reanimated/apple/LayoutReanimation/REASharedTransitionManager.m
++++ b/node_modules/react-native-reanimated/apple/LayoutReanimation/REASharedTransitionManager.m
+@@ -213,13 +213,15 @@ - (NSArray *)sortViewsByTags:(NSArray *)views
+     // find sibling for shared view
+     NSNumber *siblingViewTag = _findPrecedingViewTagForTransition(sharedView.reactTag);
+     REAUIView *siblingView = nil;
++    int count = 0;
+     do {
+       siblingView = [_animationManager viewForTag:siblingViewTag];
+       if (siblingView == nil) {
+         [self clearAllSharedConfigsForViewTag:siblingViewTag];
+         siblingViewTag = _findPrecedingViewTagForTransition(sharedView.reactTag);
+       }
+-    } while (siblingView == nil && siblingViewTag != nil);
++      ++count;
++    } while (siblingView == nil && siblingViewTag != nil && count < 1024);
+ 
+     if (siblingView == nil) {
+       // the sibling of shared view doesn't exist yet
