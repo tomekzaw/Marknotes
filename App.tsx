@@ -276,6 +276,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.7)',
   },
   smallNote: {
+    color: 'black',
+    verticalAlign: 'top',
     fontSize: 16,
     margin: NOTES_GAP / 2,
     padding: 10,
@@ -285,6 +287,8 @@ const styles = StyleSheet.create({
     maxHeight: 200,
   },
   bigNote: {
+    color: 'black',
+    verticalAlign: 'top',
     fontSize: 16,
     width: 300,
     minHeight: 300,
